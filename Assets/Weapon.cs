@@ -14,13 +14,14 @@ public class Weapon : MonoBehaviour
     private bool isReloading = false;
     public int maxKillCount = 5;
     public int currentKillCount = 0; //public variables are set in inspector
-    public bullet bullet;
+    public int bulletDamage;
 
     private PlayerStats playerStats;
 
     private void Start()
     {
         currentAmmo = maxAmmo; //initialize the pistol with a full mag
+        bulletDamage = 1;
         GameObject player = GameObject.FindWithTag("Player");
         if (player != null)
         {
@@ -34,8 +35,10 @@ public class Weapon : MonoBehaviour
 
         if (currentAmmo > 0)
         {
-            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-            bullet.GetComponent<Rigidbody2D>().AddForce(firePoint.up * fireForce, ForceMode2D.Impulse);
+            GameObject bulletInstance = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            bulletInstance.GetComponent<Rigidbody2D>().AddForce(firePoint.up * fireForce, ForceMode2D.Impulse);
+            bulletInstance.GetComponent<bullet>().bulletDamage = bulletDamage;
+
             currentAmmo--;
         }
         else
@@ -62,7 +65,7 @@ public class Weapon : MonoBehaviour
         currentKillCount = 0;
         maxKillCount += 5 + playerStats.currentLevel;
         fireForce++;
-        bullet.bulletDamage++;
+        bulletDamage++;
     }
 
     private IEnumerator Reload()
