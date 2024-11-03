@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Normal Zombie
   - Enemy
+  - Orb
   layers:
   - Default
   - TransparentFX
