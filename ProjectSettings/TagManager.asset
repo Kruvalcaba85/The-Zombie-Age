@@ -44,3 +44,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 4167761243
+    locked: 0
+  - name: Character
+    uniqueID: 317632259
+    locked: 0
+  - name: Weapon
+    uniqueID: 3938629811
+    locked: 0
