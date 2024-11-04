@@ -9,6 +9,7 @@ public class PlayerStats : MonoBehaviour
 
     private playerController playerController;
     private ZombieStats zombieStats;
+    private Zombiebullet zombieBullet;
     public void Awake()
     {
         playerController = GetComponent<playerController>();
@@ -49,14 +50,26 @@ public class PlayerStats : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             zombieStats = collision.gameObject.GetComponent<ZombieStats>();
-            damagePlayer();
+            zombieDamagePlayer();
         }
     }
 
-    void damagePlayer()
+    void zombieDamagePlayer()
     {
         Debug.Log("Player was damaged.");
         currentHealth -= zombieStats.damagetoPlayer;
+
+        if (currentHealth <= 0)
+        {
+            Debug.Log("Player died :(");
+            playerController.DisableMovement();
+        }
+    }
+
+    public void bulletDamagePlayer(int damage)
+    {
+        Debug.LogWarning("Player damaged");
+        currentHealth -= damage;
 
         if (currentHealth <= 0)
         {

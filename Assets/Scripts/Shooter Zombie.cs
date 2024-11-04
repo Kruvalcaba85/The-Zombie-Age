@@ -16,7 +16,6 @@ public class ShooterZombie : MonoBehaviour
     public GameObject bulletPrefab;
     private ZombieMovement zombieMovement;
 
-    // Start is called before the first frame update
     void Start()
     {
         zombieMovement = GetComponent<ZombieMovement>();
@@ -24,23 +23,22 @@ public class ShooterZombie : MonoBehaviour
         timeToFire = 1f;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (target == null) return;
 
         float distance = Vector2.Distance(target.position, transform.position);
 
-        Vector2 direction = (target.position - transform.position).normalized;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        firePoint.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        // Rotate the firePoint to aim at the player
+        Vector2 direction = (target.position - firePoint.position).normalized;
+        firePoint.up = direction; // Aim firePoint only towards the player for shooting
 
-        // If the zombie is within shooting range, stop movement
+        // Control movement and shooting
         if (distance <= distanceToStop)
         {
             zombieMovement.moveSpeed = 0f;
-            
-            if(timeToFire <= 0f)
+
+            if (timeToFire <= 0f)
             {
                 Shoot();
                 timeToFire = fireRate;
@@ -57,11 +55,10 @@ public class ShooterZombie : MonoBehaviour
         }
     }
 
-
     private void Shoot()
     {
-            GameObject bulletInstance = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-            bulletInstance.GetComponent<Rigidbody2D>().AddForce(firePoint.up * fireForce, ForceMode2D.Impulse);
-            bulletInstance.GetComponent<bullet>().bulletDamage = bulletDamage;
+        GameObject bulletInstance = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        bulletInstance.GetComponent<Rigidbody2D>().AddForce(firePoint.up * fireForce, ForceMode2D.Impulse);
+        bulletInstance.GetComponent<Zombiebullet>().bulletDamage = bulletDamage;
     }
 }
