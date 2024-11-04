@@ -5,7 +5,7 @@ using UnityEngine;
 public class ZombieMovement : MonoBehaviour
 {
     public float moveSpeed = 2f;
-    Rigidbody2D rb;
+    public Rigidbody2D rb;
     Transform target;
     Vector2 moveDirection;
 
