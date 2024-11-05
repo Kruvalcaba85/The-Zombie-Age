@@ -15,6 +15,7 @@ public class ZombieStats : MonoBehaviour
 
     public float despawnDistance = 20f;
     Transform player;
+    private bool isPlayerInMeleeMode;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,8 +53,16 @@ public class ZombieStats : MonoBehaviour
             Debug.Log("Orb Dropped!");
         }
         Destroy(gameObject);
-        weapon.addWeaponExperience();
-        
+
+        if (!isPlayerInMeleeMode)
+        {
+            Weapon weapon = FindObjectOfType<Weapon>();
+            if (weapon != null)
+            {
+                weapon.addWeaponExperience();
+            }
+        }
+
     }
 
     public void OnDestroy()

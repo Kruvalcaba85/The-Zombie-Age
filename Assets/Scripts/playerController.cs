@@ -7,24 +7,40 @@ public class playerController : MonoBehaviour
     public float moveSpeed = 5f;
     public Rigidbody2D rb;
     public Weapon weapon;
+    public MeleeAttack meleeAttack;
     private Vector2 moveDirection;
     private Vector2 mousePosition;
     private bool canMove = true;
+    private bool isMeleeMode = false;
+
+    public bool IsMeleeMode => isMeleeMode;
 
     // Update is called once per frame
     void Update()
     {
         if (!canMove) return;
-        {
-            
-        }
+
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
 
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            ToggleMeleeMode();
+            Debug.Log("Switched to " + (isMeleeMode ? "Melee" : "Ranged"));
+        }
+
         if(Input.GetMouseButtonDown(0))
         {
-            weapon.Fire();
-            Debug.Log("Current Ammo: " + weapon.currentAmmo);
+            if (isMeleeMode)
+            {
+                meleeAttack.Attack();
+            }
+            else
+            {
+                weapon.Fire();
+                Debug.Log("Current Ammo: " + weapon.currentAmmo);
+            }
+            
 
         }
 
@@ -32,6 +48,17 @@ public class playerController : MonoBehaviour
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
 
+    private void ToggleMeleeMode()
+    {
+        isMeleeMode = !isMeleeMode;
+
+        // Toggle the weapon's visibility based on melee mode
+        Renderer weaponRenderer = weapon.GetComponent<Renderer>();
+        if (weaponRenderer != null)
+        {
+            weaponRenderer.enabled = !isMeleeMode;
+        }
+    }
     private void FixedUpdate()
     {
         if(canMove)

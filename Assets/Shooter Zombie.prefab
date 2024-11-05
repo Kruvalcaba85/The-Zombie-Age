@@ -110,7 +110,7 @@ MonoBehaviour:
   fireRate: 1
   timeToFire: 0
   firePoint: {fileID: 5700067090008414553}
-  bulletPrefab: {fileID: 7001792420409156796, guid: 490419167e504aa479c3d989aa879859, type: 3}
+  bulletPrefab: {fileID: 7001792420409156796, guid: 278f9814a9af1574cac798aca63d314b, type: 3}
 --- !u!114 &3512861144023148882
 MonoBehaviour:
   m_ObjectHideFlags: 0
