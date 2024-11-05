@@ -43,11 +43,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private GameObject zombiePrefab;
 
-    [SerializeField]
-    //private float zombieInterval = 0.001f;
-
-
-    //private bool spawning = true;
+    private bool waveStarted = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -59,9 +55,10 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
-        if(currentWaveCount < waves.Count && waves[currentWaveCount].spawnCount == 0) //check if wave has ended and next wave should start
+        if( !waveStarted && currentWaveCount < waves.Count && waves[currentWaveCount].spawnCount == 0) //check if wave has ended and next wave should start
         {
             StartCoroutine(BeginNextWave());
+            waveStarted = true;
         }
         spawnTimer += Time.deltaTime;
 
@@ -83,6 +80,7 @@ public class EnemySpawner : MonoBehaviour
         {
             currentWaveCount++;
             CalculateWaveQuota();
+            waveStarted = false;
         }
     }
     /*

@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 7076094500090625060}
   m_Layer: 0
   m_Name: Melee Zombie
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3254d810291539429a8379a2ded2631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 20
+  health: 7
   experienceOrbPrefab: {fileID: 1793244054499150118, guid: 3941b9130da843f40ad2dbe5360af927, type: 3}
   dropChance: 0.5
   damagetoPlayer: 5
@@ -303,7 +303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89247d112b6493c4990c71e8506dadd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
+  moveSpeed: 10
   rb: {fileID: 0}
 --- !u!114 &4860278919091073613
 MonoBehaviour:
