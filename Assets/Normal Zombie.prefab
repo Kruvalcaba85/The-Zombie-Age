@@ -173,6 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
+  rb: {fileID: 0}
 --- !u!114 &4541617191178208458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,3 +189,5 @@ MonoBehaviour:
   health: 5
   experienceOrbPrefab: {fileID: 1793244054499150118, guid: 3941b9130da843f40ad2dbe5360af927, type: 3}
   dropChance: 0.5
+  damagetoPlayer: 1
+  despawnDistance: 20

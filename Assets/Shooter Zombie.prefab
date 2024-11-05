@@ -106,7 +106,7 @@ MonoBehaviour:
   distanceToShoot: 8
   distanceToStop: 5
   fireForce: 20
-  bulletDamage: 1
+  bulletDamage: 5
   fireRate: 1
   timeToFire: 0
   firePoint: {fileID: 5700067090008414553}
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   experienceOrbPrefab: {fileID: 1793244054499150118, guid: 3941b9130da843f40ad2dbe5360af927, type: 3}
-  dropChance: 0.5
+  dropChance: 0.7
   damagetoPlayer: 2
   despawnDistance: 20
 --- !u!60 &169692519777037000
@@ -215,7 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89247d112b6493c4990c71e8506dadd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7
+  moveSpeed: 5
   rb: {fileID: 0}
 --- !u!1 &8383854471649817689
 GameObject:
