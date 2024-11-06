@@ -127,7 +127,7 @@ MonoBehaviour:
   experienceOrbPrefab: {fileID: 1793244054499150118, guid: 3941b9130da843f40ad2dbe5360af927, type: 3}
   dropChance: 0.7
   damagetoPlayer: 2
-  despawnDistance: 20
+  despawnDistance: 50
 --- !u!60 &169692519777037000
 PolygonCollider2D:
   m_ObjectHideFlags: 0
