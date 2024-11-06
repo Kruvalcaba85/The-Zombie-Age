@@ -15,6 +15,10 @@ public class Weapon : MonoBehaviour
     public int maxKillCount = 5;
     public int currentKillCount = 0; //public variables are set in inspector
     public int bulletDamage;
+    public AudioSource shootingSound;
+    public AudioSource lastRoundSound;
+    public AudioSource reloadSound;
+    public AudioSource reloadCompleteSound;
 
     private PlayerStats playerStats;
 
@@ -33,13 +37,24 @@ public class Weapon : MonoBehaviour
     {
         if (isReloading) return;
 
-        if (currentAmmo > 0)
+        if(currentAmmo == 1)
         {
             GameObject bulletInstance = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             bulletInstance.GetComponent<Rigidbody2D>().AddForce(firePoint.up * fireForce, ForceMode2D.Impulse);
             bulletInstance.GetComponent<bullet>().bulletDamage = bulletDamage;
 
             currentAmmo--;
+            lastRoundSound.Play();
+        }
+        if (currentAmmo > 1)
+        {
+            GameObject bulletInstance = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            bulletInstance.GetComponent<Rigidbody2D>().AddForce(firePoint.up * fireForce, ForceMode2D.Impulse);
+            bulletInstance.GetComponent<bullet>().bulletDamage = bulletDamage;
+
+            currentAmmo--;
+
+            shootingSound.Play();
         }
         else
         {
@@ -71,10 +86,13 @@ public class Weapon : MonoBehaviour
     private IEnumerator Reload()
     {
         isReloading = true;
+        shootingSound.Stop();
+        reloadSound.Play();
         yield return new WaitForSeconds(reloadTime);
         currentAmmo = maxAmmo;
         isReloading = false;
         Debug.Log("Reload complete!");
+        reloadCompleteSound.Play();
 
     }
 

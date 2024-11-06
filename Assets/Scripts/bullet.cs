@@ -13,11 +13,15 @@ public class bullet : MonoBehaviour
             collision.gameObject.GetComponent<ZombieStats>().damageEnemy(bulletDamage);
             Destroy(gameObject);
         }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Update()
     {
         // in order to get rid of bullets in case they do not hit anything
-        Destroy(this.gameObject, 3);
+        Destroy(this.gameObject, 1);
     }
 }

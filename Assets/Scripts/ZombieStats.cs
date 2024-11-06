@@ -63,6 +63,8 @@ public class ZombieStats : MonoBehaviour
             }
         }
 
+        
+
     }
 
     public void OnDestroy()

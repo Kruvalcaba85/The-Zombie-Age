@@ -11,6 +11,7 @@ public class MeleeAttack : MonoBehaviour
     private float timeUntilMelee;
     private bool isAttacking; // New boolean to prevent multiple triggers
     private HashSet<Collider2D> hitEnemies; // Track hit enemies
+    public AudioSource swingingSound;
 
     void Start()
     {
@@ -25,7 +26,7 @@ public class MeleeAttack : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Debug.LogWarning("Reached!");
+                swingingSound.Play();
                 anim.SetTrigger("Attack");
                 timeUntilMelee = meleeSpeed;
                 isAttacking = true; // Set to true once attack starts

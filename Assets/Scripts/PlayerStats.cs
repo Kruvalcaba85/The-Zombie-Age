@@ -10,6 +10,9 @@ public class PlayerStats : MonoBehaviour
     private playerController playerController;
     private ZombieStats zombieStats;
     private Zombiebullet zombieBullet;
+    public AudioSource DamageSound;
+    public AudioSource DeathSound;
+    public bool isDead = false;
     public void Awake()
     {
         playerController = GetComponent<playerController>();
@@ -56,23 +59,36 @@ public class PlayerStats : MonoBehaviour
 
     void zombieDamagePlayer()
     {
+        if (isDead) return;
+        DamageSound.Play();
         Debug.Log("Player was damaged.");
         currentHealth -= zombieStats.damagetoPlayer;
 
         if (currentHealth <= 0)
         {
-            Debug.Log("Player died :(");
-            playerController.DisableMovement();
+            HandleDeath();
         }
     }
 
     public void bulletDamagePlayer(int damage)
     {
+        if (isDead) return;
+        DamageSound.Play();
         Debug.LogWarning("Player damaged");
         currentHealth -= damage;
 
         if (currentHealth <= 0)
         {
+            HandleDeath();
+        }
+    }
+
+    void HandleDeath()
+    {
+        if (!isDead) // Ensure the death logic only runs once
+        {
+            isDead = true; // Set the flag to indicate player is dead
+            DeathSound.Play();
             Debug.Log("Player died :(");
             playerController.DisableMovement();
         }

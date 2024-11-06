@@ -11,6 +11,7 @@ public class ShooterZombie : MonoBehaviour
     public int bulletDamage;
     public float fireRate = 1f;
     public float timeToFire;
+    public AudioSource shootSound;
 
     public Transform firePoint;
     public GameObject bulletPrefab;
@@ -57,6 +58,7 @@ public class ShooterZombie : MonoBehaviour
 
     private void Shoot()
     {
+        shootSound.Play();
         GameObject bulletInstance = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         bulletInstance.GetComponent<Rigidbody2D>().AddForce(firePoint.up * fireForce, ForceMode2D.Impulse);
         bulletInstance.GetComponent<Zombiebullet>().bulletDamage = bulletDamage;
